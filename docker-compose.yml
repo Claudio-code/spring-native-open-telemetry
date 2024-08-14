@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  spring-native-api:
+    container_name: spring-native-api
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "8080:8080"
