@@ -2,8 +2,6 @@ FROM ghcr.io/graalvm/graalvm-community:21 AS build
 
 USER root
 
-RUN microdnf install findutils
-
 WORKDIR /code
 
 COPY settings.gradle .
