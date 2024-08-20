@@ -6,3 +6,19 @@ spring:
     name: Spring
   main:
     banner-mode: off
+
+otel:
+  instrumentation:
+    spring-web:
+      enabled: true
+  exporter:
+    otlp:
+      protocol: grpc
+      endpoint: http://localhost:4317
+  logs:
+    exporter: none
+  resource:
+    attributes:
+      service.name: spring-service
+      service: spring-service
+      env: dev
