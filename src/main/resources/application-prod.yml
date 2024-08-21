@@ -1,4 +1,5 @@
 otel:
   exporter:
     otlp:
+      protocol: grpc
       endpoint: http://collector:4317
