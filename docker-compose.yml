@@ -1,11 +1,15 @@
 services:
-  # spring-native-api:
-  #   container_name: spring-native-api
-  #   build:
-  #     context: .
-  #     dockerfile: ./docker/Dockerfile
-  #   ports:
-  #     - "8080:8080"
+  spring-native-api:
+    container_name: spring-native-api
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    ports:
+      - "8080:8080"
+    depends_on:
+      - collector
 
   collector:
     container_name: collector
@@ -16,6 +20,7 @@ services:
       - ./docker/collector/otel-collector.yml:/etc/otelcol-contrib/otel-collector.yml
     ports:
       - "4317:4317" # OTLP gRPC receiver
+      - "4318:4318" # OTLP HTTP receiver
       - "8889" # Prometheus exporter metrics
     depends_on:
       - loki

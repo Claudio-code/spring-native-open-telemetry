@@ -14,6 +14,8 @@ RUN ./gradlew nativeCompile -x test
 
 FROM debian:12-slim
 
+# ENV SPRING_PROFILES_ACTIVE=prod
+
 COPY --from=build /code/build/native/nativeCompile/* .
 
 EXPOSE 8080
